@@ -63,24 +63,53 @@ def get_page_text(urls):
         to_post = soup.find(id='postingbody').text
         to_post = no_emoji(to_post)
         to_post = clean_post(to_post)
-        print(to_post)
+        # print(to_post)
         posts.append(to_post)
-    return posts
+        with open('posting_bodies.txt', 'a') as f:
+            f.write(to_post + '\n')
+        # make this only return a post if it is not already stored in a file
+    return posts[0]
 
 
-def send_tweet():
-    tweets = get_page_text(build_post_url())
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_token_secret)
-    twitter_api = tweepy.API(auth)
-    status_post = choice(tweets)
-    twitter_api.update_status(status_post[:140])
-send_tweet()
+def get_new_posts():
+    posts = []
+    for url in urls:
+        response.get(url)
+        if response.status_code == 200:
+            data = response.text
+        soup = BeautifulSoup(data, 'html.parser')
+        to_post = soup.find(id='postingbody').text
+        to_post = no_emoji(to_post)
+        to_post = clean_post(to_post)
+        posts.append(to_post)
+
+
+def post_to_send():
+    # posts = get_page_text(build_post_url())
+    choices = []
+    posting_bodies = open('posting_bodies.txt', 'r')
+    for body in posting_bodies:
+        choices.append(body)
+    post_to_post = choice(choices)
+    print(post_to_post)
+
+
+# def send_tweet():
+#     tweets = get_page_text(build_post_url())
+#     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+#     auth.set_access_token(access_token, access_token_secret)
+#     twitter_api = tweepy.API(auth)
+#     status_post = choice(tweets)
+#     twitter_api.update_status(status_post[:140])
+# send_tweet()
 
 
 def main():
     print(get_page_text(build_post_url()))
-    send_tweet()
+    # print(get_page_text(build_post_url()))
+    # send_tweet()
+    # get_page_text(build_post_url())
+    # post_to_send()
 
 if __name__ == '__main__':
     main()
