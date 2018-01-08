@@ -21,7 +21,6 @@ def get_post_ids():
     posts = soup.findAll('a', attrs={'class':  'result-image'})
     for post in posts:
         post_urls.append(post['href'])
-    print(post_urls)
     return post_urls
 
 
@@ -56,7 +55,6 @@ def build_post_url():
 
 def store_post_body(urls):
     posting_bodies = []
-    print(urls)
     for url in urls:
         response = requests.get(url)
         if response.status_code == 200:
