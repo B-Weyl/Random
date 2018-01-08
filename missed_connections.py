@@ -21,6 +21,7 @@ def get_post_ids():
     posts = soup.findAll('a', attrs={'class':  'result-image'})
     for post in posts:
         post_urls.append(post['href'])
+    print(post_urls)
     return post_urls
 
 
@@ -49,12 +50,13 @@ def build_post_url():
     post_urls = get_post_ids()
     urls = []
     for item in post_urls:
-        urls.append(BASE_URL + item)
+        urls.append(item)
     return urls
 
 
 def store_post_body(urls):
     posting_bodies = []
+    print(urls)
     for url in urls:
         response = requests.get(url)
         if response.status_code == 200:
@@ -76,7 +78,7 @@ def check_for_updates():
     soup = BeautifulSoup(data, 'html.parser')
     most_recent_post = soup.find('a', attrs={'class':  'result-image'})
     most_recent_id = most_recent_post['href']
-    new_response = requests.get(BASE_URL + most_recent_id)
+    new_response = requests.get(most_recent_id)
     if new_response.status_code == 200:
         info = new_response.text
     soup2 = BeautifulSoup(info, 'html.parser')
@@ -107,7 +109,6 @@ def cloud():
 
 def main():
     check_for_updates()
-    cloud()
 
 
 if __name__ == '__main__':
