@@ -18,7 +18,7 @@ def get_post_ids():
 
     soup = BeautifulSoup(data, 'html.parser')
     post_urls = []
-    posts = soup.findAll('a', attrs={'class':  'result-image'})
+    posts = soup.findAll('a', attrs={'class': 'result-image'})
     for post in posts:
         post_urls.append(post['href'])
     return post_urls
@@ -74,7 +74,7 @@ def check_for_updates():
         data = response.content
 
     soup = BeautifulSoup(data, 'html.parser')
-    most_recent_post = soup.find('a', attrs={'class':  'result-image'})
+    most_recent_post = soup.find('a', attrs={'class': 'result-image'})
     most_recent_id = most_recent_post['href']
     new_response = requests.get(most_recent_id)
     if new_response.status_code == 200:
@@ -98,7 +98,7 @@ def cloud():
     # wordcloud = WordCloud().generate(text)
     # plt.imshow(wordcloud, interpolation='bilinear')
     # plt.axis("off")
-    wordcloud = WordCloud(max_font_size=40).generate(text)
+    wordcloud = WordCloud(max_font_size=60).generate(text)
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
@@ -107,6 +107,7 @@ def cloud():
 
 def main():
     check_for_updates()
+    cloud()
 
 
 if __name__ == '__main__':
