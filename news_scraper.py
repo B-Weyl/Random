@@ -5,7 +5,6 @@ BASE_URL = 'https://www.delawareonline.com'
 response = requests.get("https://www.delawareonline.com/news/crime")
 if response.status_code == 200:
     data = response.text
-# print(data)
 soup = BeautifulSoup(data, 'html.parser')
 the_urls = []
 post_titles = []
@@ -17,4 +16,4 @@ for headline in the_headlines:
         post_titles.append(headline.text)
 titles_and_urls = zip(post_titles, the_urls)
 for title, url in titles_and_urls:
-    print(title + '\n' + url)
+    print(f"{title}" + '\n' + f"{url}")
