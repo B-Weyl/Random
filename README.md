@@ -1,8 +1,9 @@
 # Projects for fun and learning.
 
-## Local News Crime Headline Scraper
+## news_scraper.py
 
-I got tired of going to a local news website and scrolling through the pages, so I decided I'd write some simple python to get the stories for me. The site also has a paywall after 'X' amount of articles have been read. I'm not 100% sure that using this method circumvents that, but it seems to be the case. I use probably one of my favorite and in my opinion best python libraries, Requests, to do so.
+I got tired of going to a local news website and scrolling through the pages, 
+so I decided I'd write some simple python to get the stories for me. The site also has a paywall after 'X' amount of articles have been read. I'm not 100% sure that using this method circumvents that, but it seems to be the case. I use probably one of my favorite and in my opinion best python libraries, Requests, to do so.
 
 I started off with finding the main link of the site that I would want to extract the stories from. This website has various other sections including an E-newspaper, Crime, Things to do, Delaware Data, etc. I think having crime information a simple command line program away would make my life better.
 
@@ -25,6 +26,14 @@ http://www.delawareonline.com/story/news/crime/2017/08/29/shooting-e-23rd-st-cri
 ```
 
 
-## Craigslist Missed Connections Scraper
+## townsquare.py
 
-This has got to be one of the more weird projects that I have done. Some of the results that I got are not for the feint of heart. I decide to take the same approach as I did for the crime news scraper: figure out the format of the post URLs, grab the information I need to build them, and write a quick function to generate all of the available URLs.
+This is the same concept as the news_scraper.py program but this website has a little bit different information to gather. This program will spit out all the titles and urls from the div that has top stories, government, culture, etc, ommitting any duplicated stories.
+
+
+## owl_locator.py
+
+I've picked up the hobby of photography and more specifically wildlife photography. I would love the opportunity to photograph any of the various owl species that are found within the state so I wrote this quick script to get all of the sightings of the owls speciies within the state in a quicker and easier to read format than afforded by the eBird website. I have aliased this script to `owls` so that I can quickly run it from my terminal without needing to navigate any websites.
+
+
+
